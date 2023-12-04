@@ -26,7 +26,13 @@
         <td><c:out value="${funcionario.nome}" /></td>
         <td><c:out value="${funcionario.login}" /></td>
         <td><c:out value="${funcionario.senha}" /></td>
-        <td><button value="deletar">Deletar</button> </td>
+        <td>
+            <form action="deletar" method="post">
+                <input type="hidden" name="id" value="${funcionario.id}">
+                <input type="hidden" name="tipo" value="funcionario">
+                <input type="submit" value="Deletar">
+            </form>
+        </td>
         <td><button value="editar">Editar</button> </td>
 
     </tr>

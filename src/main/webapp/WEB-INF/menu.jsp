@@ -15,7 +15,7 @@
         </div>
     </div>
     <a href="pagina3.jsp" class="menu-item">Ordem de serviço</a>
-    <a href="pagina4.jsp" class="menu-item">Sair</a>
+    <a href="sair" class="menu-item">Sair</a>
 </div>
 
 <div class="conteudo">

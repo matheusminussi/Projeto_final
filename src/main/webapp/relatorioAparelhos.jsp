@@ -28,7 +28,13 @@
         <td><c:out value="${aparelho.modelo}" /></td>
         <td><c:out value="${aparelho.marca}" /></td>
         <td><c:out value="${aparelho.numero_serie}" /></td>
-        <td><button value="deletar">Deletar</button> </td>
+        <td>
+            <form action="deletar" method="post">
+                <input type="hidden" name="id" value="${aparelho.id}">
+                <input type="hidden" name="tipo" value="aparelho">
+                <input type="submit" value="Deletar">
+            </form>
+        </td>
         <td><button value="editar">Editar</button> </td>
 
     </tr>

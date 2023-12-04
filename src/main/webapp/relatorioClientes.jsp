@@ -26,7 +26,13 @@
         <td><c:out value="${cliente.nome}" /></td>
         <td><c:out value="${cliente.telefone}" /></td>
         <td><c:out value="${cliente.endereco}" /></td>
-        <td><button value="deletar">Deletar</button> </td>
+        <td>
+            <form action="deletar" method="post">
+                <input type="hidden" name="id" value="${cliente.id}">
+                <input type="hidden" name="tipo" value="cliente">
+                <input type="submit" value="Deletar">
+            </form>
+        </td>
         <td><button value="editar">Editar</button> </td>
 
     </tr>

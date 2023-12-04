@@ -26,7 +26,13 @@
         <td><c:out value="${servico.nome}" /></td>
         <td><c:out value="${servico.descricao}" /></td>
         <td><c:out value="${servico.valor}" /></td>
-        <td><button value="deletar">Deletar</button> </td>
+        <td>
+            <form action="deletar" method="post">
+                <input type="hidden" name="id" value="${servico.id}">
+                <input type="hidden" name="tipo" value="servico">
+                <input type="submit" value="Deletar">
+            </form>
+        </td>
         <td><button value="editar">Editar</button> </td>
 
     </tr>
