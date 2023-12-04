@@ -2,13 +2,15 @@
 <link rel="stylesheet" href="estilo.css" >
 <div class="menu-lateral">
     <a href="home.jsp" class="menu-item">Home</a>
+    <a href="cadastro.jsp" class="menu-item">Cadastar</a>
+
     <div class="menu-item">
         Relatorios
         <div class="submenu">
-            <a href="pagina2a.jsp">Clientes</a>
-            <a href="pagina2b.jsp">Aparelhos</a>
-            <a href="pagina2c.jsp">Serviços</a>
-            <a href="pagina2c.jsp">Funcionarios</a>
+            <a href="buscarClientes">Clientes</a>
+            <a href="buscarAparelhos">Aparelhos</a>
+            <a href="buscarServicos">Serviços</a>
+            <a href="buscar">Funcionarios</a>
 
         </div>
     </div>

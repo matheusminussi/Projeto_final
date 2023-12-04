@@ -9,8 +9,7 @@ public class Aparelho {
     public Aparelho() {
     }
 
-    public Aparelho(int id, String nome, String modelo, String marca, String numero_serie) {
-        this.id = id;
+    public Aparelho(String nome, String modelo, String marca, String numero_serie) {
         this.nome = nome;
         this.modelo = modelo;
         this.marca = marca;

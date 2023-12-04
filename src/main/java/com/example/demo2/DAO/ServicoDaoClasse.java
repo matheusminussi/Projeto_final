@@ -1,6 +1,5 @@
 package com.example.demo2.DAO;
 
-import com.example.demo2.Modelo.Aparelho;
 import com.example.demo2.Modelo.Servico;
 
 import java.sql.Connection;
@@ -10,9 +9,9 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SevicoDaoClasse implements ServicoDaoInterface{
+public class ServicoDaoClasse implements ServicoDaoInterface{
     private Connection con;
-    public SevicoDaoClasse() throws ErroDao{
+    public ServicoDaoClasse() throws ErroDao{
         con=FabricaConexao.pegaConexao();
     }
     @Override

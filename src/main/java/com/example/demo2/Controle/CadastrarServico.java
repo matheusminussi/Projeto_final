@@ -1,9 +1,8 @@
 package com.example.demo2.Controle;
 
-import com.example.demo2.DAO.ErroDao;
-import com.example.demo2.DAO.FuncionarioDaoClasse;
-import com.example.demo2.DAO.FuncionarioDaoInterface;
-import com.example.demo2.Modelo.Funcionario;
+import com.example.demo2.DAO.*;
+import com.example.demo2.Modelo.Aparelho;
+import com.example.demo2.Modelo.Servico;
 import com.example.demo2.Utils.Validador;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -14,23 +13,25 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "cadastrarFuncionario", value = "/cadastrarFuncionario")
-public class CadastrarFuncionario extends HttpServlet {
+@WebServlet(name = "cadastrarServico", value = "/cadastrarServico")
+public class CadastrarServico extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext aplicacao=getServletContext();
         request.setCharacterEncoding("utf-8");
         //pegar os dados
         String nome=request.getParameter("nome");
-        String login=request.getParameter("login");
-        String senha=request.getParameter("senha");
+        String descricao=request.getParameter("descricao");
+        String Tvalor=request.getParameter("valor");
         //se os dados existirem
-        if(Validador.temValor(nome)&&Validador.temValor(login)&&Validador.temValor(senha)) {
+        if(Validador.temValor(nome)&&Validador.temValor(descricao)&&Validador.temValor(Tvalor)) {
+            double valor = Double.parseDouble(Tvalor);
 
-            Funcionario f=new Funcionario(nome,login,senha);
+            Servico s=new Servico(nome,descricao,valor);
             try {
-                FuncionarioDaoInterface dao=new FuncionarioDaoClasse();
-                dao.inserir(f);
+                ServicoDaoInterface dao=new ServicoDaoClasse() {
+                };
+                dao.inserir(s);
                 dao.sair();
                 //envia para o relatorio com a mensagem de sucesso
                 response.sendRedirect("home.jsp?mensagem=cadastradocomsucesso");

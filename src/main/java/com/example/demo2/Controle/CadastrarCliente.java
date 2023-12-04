@@ -32,9 +32,9 @@ public class CadastrarCliente extends HttpServlet {
                 dao.inserir(c);
                 dao.sair();
                 //envia para o relatorio com a mensagem de sucesso
-                response.sendRedirect("relatorio.jsp?mensagem=cadastradocomsucesso");
+                response.sendRedirect("home.jsp?mensagem=cadastradocomsucesso");
             } catch (ErroDao e) {
-                response.sendRedirect("index.jsp?mensagem=erroaotentarcadastrar");
+                response.sendRedirect("home.jsp?mensagem=erroaotentarcadastrar");
             }
 
 
@@ -42,7 +42,7 @@ public class CadastrarCliente extends HttpServlet {
         else //senão
         {
             //envia para o index com a mensagem de erro
-            response.sendRedirect("index.jsp?mensagem=faltadados");
+            response.sendRedirect("home.jsp?mensagem=faltadados");
         }
     }
 }

@@ -35,7 +35,7 @@ public class Logar extends HttpServlet {
                 if(f!=null) // se funcionario for diferente de null atribui os funcionarios na sessao
                 {
                     sessao.setAttribute("usuario",f);
-                    response.sendRedirect("relatorio.jsp?mensagem=logadocomsucesso");
+                    response.sendRedirect("home.jsp?mensagem=logadocomsucesso");
                 }
                 else {
                     response.sendRedirect("index.jsp?mensagem=loginousenhaincorretos");

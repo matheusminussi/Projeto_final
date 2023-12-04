@@ -13,25 +13,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Set;
 
 @WebServlet(name = "buscar", value = "/buscar")
 public class Buscar extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String login=request.getParameter("login");
-        String senha=request.getParameter("senha");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(Validador.temValor(login)&&Validador.temValor(senha)){
             try {
 
                 FuncionarioDaoInterface dao=new FuncionarioDaoClasse();
-                Funcionario f=dao.buscar(login,senha);
+                Set<Funcionario> funcionarios=dao.buscar();
                 dao.sair();
 
-                if(f!=null) // se funcionario for diferente de null atribui os funcionarios na requisisao
+                if(funcionarios!=null) // se funcionario for diferente de null atribui os funcionarios na requisisao
                 {
-                    request.setAttribute("funcionario",f);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/editar.jsp");
+                    request.setAttribute("funcionarios",funcionarios);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/relatorioFuncionarios.jsp");
                     // Encaminhe a requisição para a JSP "editar.jsp"
                     dispatcher.forward(request, response);
 
@@ -46,6 +44,6 @@ public class Buscar extends HttpServlet {
         }
 
 
-    }
+
 }
  

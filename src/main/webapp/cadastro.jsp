@@ -7,8 +7,6 @@
 </head>
 <body>
 
-<%@ include file="WEB-INF/menu.jsp" %>
-<div class="conteudo" >
     <input type="radio" name="opcao" value="div1" onclick="mostrarDiv('div1')"> Clientes
     <input type="radio" name="opcao" value="div2" onclick="mostrarDiv('div2')"> Aparelhos
     <input type="radio" name="opcao" value="div3" onclick="mostrarDiv('div3')"> Serviços
@@ -27,7 +25,7 @@
             </form>
     </div>
     <div id="div2" class="menu-cadastro" style="display:none;">
-        <form>
+        <form action="cadastrarAparelho" method="post">
             <label>Nome
                 <input type="text" name="nome"></label>
             <label>modelo
@@ -40,7 +38,7 @@
         </form>
     </div>
     <div id="div3" class="menu-cadastro" style="display:none;">
-        <form>
+        <form action="cadastrarServico" method="post">
             <label>Nome
                 <input type="text" name="nome"></label>
             <label>Descrição
@@ -63,7 +61,6 @@
         </form>
     </div>
 
-</div>
 <script src="codigo.js"></script>
 
 </body>
