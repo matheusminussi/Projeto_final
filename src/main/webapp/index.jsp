@@ -15,7 +15,7 @@
     <input type="hidden" value="root" name="login">
     <input type="hidden" value="123" name="senha">
 
-    <input type="submit" value="cadastrar"></form>
+    <input type="submit" value="editar"></form>
 
 
 </body>

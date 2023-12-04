@@ -7,15 +7,7 @@
 </head>
 <body>
 
-<c:set var="funcionario" value="${requestScope.funcionario}"/>
-
-
-<c:if test="${not empty funcionario}">
-
-    <c:set var="nome" value="${funcionario.nome}"/>
-    <input type="text" name="nome" value="${nome}">
-
-</c:if>
+<c:out value="${requestScope.funcionario.nome}" />
 
 
 </body>

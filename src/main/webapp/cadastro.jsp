@@ -6,13 +6,16 @@
 
 </head>
 <body>
+
+<%@ include file="WEB-INF/menu.jsp" %>
+<div class="conteudo" >
     <input type="radio" name="opcao" value="div1" onclick="mostrarDiv('div1')"> Clientes
     <input type="radio" name="opcao" value="div2" onclick="mostrarDiv('div2')"> Aparelhos
     <input type="radio" name="opcao" value="div3" onclick="mostrarDiv('div3')"> Serviços
     <input type="radio" name="opcao" value="div4" onclick="mostrarDiv('div4')"> Funcionarios
 
 
-    <div id="div1" style="display:block;">
+    <div id="div1" class="menu-cadastro" style="display:block;">
             <form action="cadastrarCliente" method="post">
                 <label>Nome
                     <input type="text" name="nome"></label>
@@ -23,7 +26,7 @@
                 <input type="submit" value="Cadastrar">
             </form>
     </div>
-    <div id="div2" style="display:none;">
+    <div id="div2" class="menu-cadastro" style="display:none;">
         <form>
             <label>Nome
                 <input type="text" name="nome"></label>
@@ -36,7 +39,7 @@
             <input type="submit" value="Cadastrar">
         </form>
     </div>
-    <div id="div3" style="display:none;">
+    <div id="div3" class="menu-cadastro" style="display:none;">
         <form>
             <label>Nome
                 <input type="text" name="nome"></label>
@@ -48,7 +51,7 @@
             <input type="submit" value="Cadastrar">
         </form>
     </div>
-    <div id="div4" style="display:none;">
+    <div id="div4" class="menu-cadastro" style="display:none;">
         <form action="cadastrarFuncionario" method="post">
             <label>Nome
                 <input type="text" name="nome"></label>
@@ -60,7 +63,7 @@
         </form>
     </div>
 
-
+</div>
 <script src="codigo.js"></script>
 
 </body>

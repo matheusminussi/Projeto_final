@@ -15,6 +15,8 @@ public class Funcionario {
         this.senha = senha;
     }
 
+
+
     public int getId() {
         return id;
     }
@@ -59,4 +61,17 @@ public class Funcionario {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", login='" + login + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
+    }
 }
+
+
+

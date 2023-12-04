@@ -5,6 +5,7 @@ import com.example.demo2.DAO.FuncionarioDaoClasse;
 import com.example.demo2.DAO.FuncionarioDaoInterface;
 import com.example.demo2.Modelo.Funcionario;
 import com.example.demo2.Utils.Validador;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,10 +27,13 @@ public class Buscar extends HttpServlet {
                 FuncionarioDaoInterface dao=new FuncionarioDaoClasse();
                 Funcionario f=dao.buscar(login,senha);
                 dao.sair();
+
                 if(f!=null) // se funcionario for diferente de null atribui os funcionarios na requisisao
                 {
                     request.setAttribute("funcionario",f);
-                    request.getRequestDispatcher("editar.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/editar.jsp");
+                    // Encaminhe a requisição para a JSP "editar.jsp"
+                    dispatcher.forward(request, response);
 
                 }
                 else {
