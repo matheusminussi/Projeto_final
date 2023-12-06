@@ -90,6 +90,27 @@ public class ClienteDaoClasse implements ClienteDaoInterface{
             throw new ErroDao(e);
         }
     }
+    public Cliente buscar(String nome) throws ErroDao {
+        try {
+            PreparedStatement stm=con.prepareStatement
+                    ("select * from cliente where nome=?");
+            stm.setString(1,nome);
+            ResultSet rs= stm.executeQuery();
+            if(rs.next()){
+                Cliente c=new Cliente();
+                c.setId(rs.getInt("id"));
+                c.setNome(rs.getString("nome"));
+                c.setTelefone(rs.getString("telefone"));
+                c.setEndereco(rs.getString("endereco"));
+                return c;
+            }
+            else
+                return null;
+
+        } catch (SQLException e) {
+            throw new ErroDao(e);
+        }
+    }
 
     @Override
     public Set<Cliente> buscar() throws ErroDao {

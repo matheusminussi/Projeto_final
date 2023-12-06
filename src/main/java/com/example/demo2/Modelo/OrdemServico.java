@@ -11,18 +11,17 @@ public class OrdemServico {
     Aparelho aparelho;
     String observacao;
     List<Servico> servicos = new ArrayList<>();
-    Date dataEntrada,dataSaida;
+    Date dataEntrada=new Date();
+    Date dataSaida;
     double valorTotal;
 
     public OrdemServico() {
     }
 
-    public OrdemServico(int id, Cliente cliente, Aparelho aparelho, String observacao, List<Servico> servicos, Date dataEntrada) {
-        this.id = id;
+    public OrdemServico(Cliente cliente, Aparelho aparelho, String observacao, Date dataEntrada) {
         this.cliente = cliente;
         this.aparelho = aparelho;
         this.observacao = observacao;
-        this.servicos = servicos;
         this.dataEntrada = dataEntrada;
     }
 

@@ -11,6 +11,7 @@ public interface ServicoDaoInterface {
     public void deletar(int id) throws ErroDao;
     public void editar(Servico s) throws ErroDao;
     public Servico buscar(int id, String nome) throws ErroDao;
+    public Servico buscar(String nome) throws ErroDao;
     public Set<Servico> buscar()throws ErroDao;
     public void sair() throws ErroDao;
 }

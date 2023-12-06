@@ -11,6 +11,7 @@ public interface ClienteDaoInterface {
     public void deletar(int id) throws ErroDao;
     public void editar(Cliente c) throws ErroDao;
     public Cliente buscar(int id, String nome) throws ErroDao;
+    public Cliente buscar(String nome) throws ErroDao;
     public Set<Cliente> buscar()throws ErroDao;
     public void sair() throws ErroDao;
 }

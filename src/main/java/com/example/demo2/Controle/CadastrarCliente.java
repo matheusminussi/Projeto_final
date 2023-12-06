@@ -41,7 +41,7 @@ public class CadastrarCliente extends HttpServlet {
         }
         else //senão
         {
-            //envia para o index com a mensagem de erro
+            //envia para o home com a mensagem de erro
             response.sendRedirect("home.jsp?mensagem=faltadados");
         }
     }
