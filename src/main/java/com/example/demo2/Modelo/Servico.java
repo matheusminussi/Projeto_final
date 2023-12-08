@@ -17,6 +17,13 @@ public class Servico {
         this.valor = valor;
     }
 
+    public Servico(int id, String nome, String descricao, double valor) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valor = valor;
+    }
+
     public int getId() {
         return id;
     }
@@ -60,5 +67,15 @@ public class Servico {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Servico{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", valor=" + valor +
+                '}';
     }
 }

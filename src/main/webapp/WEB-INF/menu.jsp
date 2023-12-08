@@ -16,7 +16,9 @@
 
         </div>
     </div>
-    <a href="formOs.jsp" class="menu-item">Ordem de serviço</a>
+    <a href="buscarFormOs" class="menu-item">Ordem de serviço</a>
+    <a href="buscarOs" class="menu-item">Relatorio OS</a>
+
     <a href="sair" class="menu-item">Sair</a>
 </div>
 

@@ -6,7 +6,9 @@
 
 </head>
 <body>
+<%@ include file="WEB-INF/menu.jsp" %>
 
+<div class="conteudo">
     <input type="radio" name="opcao" value="div1" onclick="mostrarDiv('div1')"> Clientes
     <input type="radio" name="opcao" value="div2" onclick="mostrarDiv('div2')"> Aparelhos
     <input type="radio" name="opcao" value="div3" onclick="mostrarDiv('div3')"> Serviços
@@ -62,6 +64,6 @@
     </div>
 
 <script src="codigo.js"></script>
-
+</div>
 </body>
 </html>

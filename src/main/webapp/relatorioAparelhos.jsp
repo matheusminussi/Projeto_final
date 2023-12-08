@@ -35,7 +35,14 @@
                 <input type="submit" value="Deletar">
             </form>
         </td>
-        <td><button value="editar">Editar</button> </td>
+        <td>
+            <form action="buscar" method="post">
+                <input type="hidden" name="id" value="${aparelho.id}">
+                <input type="hidden" name="nome" value="${aparelho.nome}">
+                <input type="hidden" name="tipo" value="aparelho">
+                <input type="submit" value="Editar">
+            </form>
+        </td>
 
     </tr>
     </c:forEach>

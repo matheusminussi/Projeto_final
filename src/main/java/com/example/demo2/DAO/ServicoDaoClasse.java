@@ -56,26 +56,28 @@ public class ServicoDaoClasse implements ServicoDaoInterface{
     @Override
     public void editar(Servico s) throws ErroDao {
         try {
+            System.out.println("AQUI NO EDITAR " + s.toString()); // chega aqui
+
             PreparedStatement stm=con.prepareStatement
-                    ("update servico set nome=?, descircao=?, valor=? where id=?");
+                    ("update servico set nome=?, descricao=?, valor=? where id=?");
             stm.setString(1,s.getNome());
             stm.setString(2,s.getDescricao());
             stm.setDouble(3,s.getValor());
-            stm.setInt(5,s.getId());
+            stm.setInt(4,s.getId());
             stm.executeUpdate();
             stm.close();
         } catch (SQLException e) {
+            System.out.println(e);
             throw new ErroDao(e);
         }
     }
 
     @Override
-    public Servico buscar(int id, String nome) throws ErroDao {
+    public Servico buscar(int id) throws ErroDao {
         try {
             PreparedStatement stm=con.prepareStatement
-                    ("select * from servico where id=? and nome=?");
+                    ("select * from servico where id=?");
             stm.setInt(1,id);
-            stm.setString(2,nome);
             ResultSet rs= stm.executeQuery();
             if(rs.next()){
                 Servico s=new Servico();

@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,7 @@ public class CadastrarOs extends HttpServlet {
         String nomeCliente=request.getParameter("cliente");
         String nomeAparelho=request.getParameter("aparelho");
         String obs=request.getParameter("obs");
-        String nomeServico=request.getParameter("servico");
+        String[] idServicos=request.getParameterValues("servicos");
         //se os dados existirem
         if(Validador.temValor(nomeCliente)&&Validador.temValor(nomeAparelho)&&Validador.temValor(obs)) {
 
@@ -43,15 +44,22 @@ public class CadastrarOs extends HttpServlet {
                 Aparelho aparelho=daoAparelho.buscar(nomeAparelho); // retorna o aparelho
                 daoAparelho.sair();
 
+
+
+
+                LocalDateTime dataHoraAtual = LocalDateTime.now();
+                System.out.println(""+dataHoraAtual);
+
+                OrdemServico os = new OrdemServico(cliente,aparelho,obs,dataHoraAtual);
+
+
                 ServicoDaoInterface daoServico= new ServicoDaoClasse();
-                Servico servico=daoServico.buscar(nomeServico); // retorna servico
-                daoServico.sair();
+                for (int i=0;i<idServicos.length;i++){
+                    int id = Integer.parseInt(idServicos[i]);
+                    Servico servico=daoServico.buscar(id);
 
-
-                Date dataAtual = new Date();
-
-                OrdemServico os = new OrdemServico(cliente,aparelho,obs,dataAtual);
-                os.getServicos().add(servico);
+                    os.getServicos().add(servico);
+                }daoServico.sair();
 
                 OsDaoInterface daoOs = new OsDaoClasse();
                 daoOs.inserir(os);
@@ -61,6 +69,7 @@ public class CadastrarOs extends HttpServlet {
                 //envia para o relatorio com a mensagem de sucesso
                 response.sendRedirect("home.jsp?mensagem=cadastradocomsucesso");
             } catch (ErroDao e) {
+                System.out.println(e);
                 response.sendRedirect("home.jsp?mensagem=erroaotentarcadastrar");
             }
 

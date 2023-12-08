@@ -68,12 +68,11 @@ public class ClienteDaoClasse implements ClienteDaoInterface{
     }
 
     @Override
-    public Cliente buscar(int id, String nome) throws ErroDao {
+    public Cliente buscar(int id) throws ErroDao {
         try {
             PreparedStatement stm=con.prepareStatement
-                    ("select * from cliente where id=? and nome=?");
+                    ("select * from cliente where id=?");
             stm.setInt(1,id);
-            stm.setString(2,nome);
             ResultSet rs= stm.executeQuery();
             if(rs.next()){
                 Cliente c=new Cliente();

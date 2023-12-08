@@ -16,6 +16,14 @@ public class Aparelho {
         this.numero_serie = numero_serie;
     }
 
+    public Aparelho(int id, String nome, String modelo, String marca, String numero_serie) {
+        this.id = id;
+        this.nome = nome;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.numero_serie = numero_serie;
+    }
+
     public String getNumero_serie() {
         return numero_serie;
     }
@@ -67,5 +75,16 @@ public class Aparelho {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Aparelho{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", marca='" + marca + '\'' +
+                ", numero_serie='" + numero_serie + '\'' +
+                '}';
     }
 }

@@ -13,7 +13,7 @@ public interface OsDaoInterface {
     public void deletar(OrdemServico os) throws ErroDao;
     public void deletar(int id) throws ErroDao;
     public void editar(OrdemServico os) throws ErroDao;
-    public OrdemServico buscar(int id, Cliente cliente) throws ErroDao;
+    public OrdemServico buscar(int id) throws ErroDao;
     public Set<OrdemServico> buscar()throws ErroDao;
     public void sair() throws ErroDao;
 }

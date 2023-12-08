@@ -60,7 +60,7 @@ public class AparelhoDaoClasse implements AparelhoDaoInterface{
     public void editar(Aparelho a) throws ErroDao {
         try {
             PreparedStatement stm=con.prepareStatement
-                    ("update aparelho set nome=?, modelo=?, marca=? numero_serie=? where id=?");
+                    ("update aparelho set nome=?, modelo=?, marca=?, numero_serie=? where id=?");
             stm.setString(1,a.getNome());
             stm.setString(2,a.getModelo());
             stm.setString(3,a.getMarca());
@@ -74,12 +74,11 @@ public class AparelhoDaoClasse implements AparelhoDaoInterface{
     }
 
     @Override
-    public Aparelho buscar(int id, String nome) throws ErroDao {
+    public Aparelho buscar(int id) throws ErroDao {
         try {
             PreparedStatement stm=con.prepareStatement
-                    ("select * from aparelho where id=? and nome=?");
+                    ("select * from aparelho where id=?");
             stm.setInt(1,id);
-            stm.setString(2,nome);
             ResultSet rs= stm.executeQuery();
             if(rs.next()){
                 Aparelho a=new Aparelho();

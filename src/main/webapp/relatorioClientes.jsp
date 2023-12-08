@@ -33,7 +33,14 @@
                 <input type="submit" value="Deletar">
             </form>
         </td>
-        <td><button value="editar">Editar</button> </td>
+        <td>
+            <form action="buscar" method="post">
+                <input type="hidden" name="id" value="${cliente.id}">
+                <input type="hidden" name="nome" value="${cliente.nome}">
+                <input type="hidden" name="tipo" value="cliente">
+                <input type="submit" value="Editar">
+            </form>
+        </td>
 
     </tr>
     </c:forEach>

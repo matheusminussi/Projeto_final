@@ -9,7 +9,7 @@ public interface AparelhoDaoInterface {
     public void deletar(Aparelho a) throws ErroDao;
     public void deletar(int id) throws ErroDao;
     public void editar(Aparelho a) throws ErroDao;
-    public Aparelho buscar(int id, String nome) throws ErroDao;
+    public Aparelho buscar(int id) throws ErroDao;
     public Aparelho buscar(String nome) throws ErroDao;
     public Set<Aparelho> buscar()throws ErroDao;
     public void sair() throws ErroDao;

@@ -1,5 +1,7 @@
 package com.example.demo2.Modelo;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,14 +13,14 @@ public class OrdemServico {
     Aparelho aparelho;
     String observacao;
     List<Servico> servicos = new ArrayList<>();
-    Date dataEntrada=new Date();
+    LocalDateTime dataEntrada;
     Date dataSaida;
     double valorTotal;
 
     public OrdemServico() {
     }
 
-    public OrdemServico(Cliente cliente, Aparelho aparelho, String observacao, Date dataEntrada) {
+    public OrdemServico(Cliente cliente, Aparelho aparelho, String observacao, LocalDateTime dataEntrada) {
         this.cliente = cliente;
         this.aparelho = aparelho;
         this.observacao = observacao;
@@ -65,12 +67,12 @@ public class OrdemServico {
         this.servicos = servicos;
     }
 
-    public Date getDataEntrada() {
+    public LocalDateTime getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(Date dataEntrada) {
-        this.dataEntrada = dataEntrada;
+    public void setDataEntrada(Timestamp dataEntrada) {
+        this.dataEntrada = dataEntrada.toLocalDateTime();
     }
 
     public Date getDataSaida() {
