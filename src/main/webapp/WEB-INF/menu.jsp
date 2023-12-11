@@ -23,7 +23,7 @@
         <div class="submenu">
             <a href="buscarOs">OS abertas</a>
             <a href="buscarOsFinalizadas">OS finalizadas</a>
-            <a href="buscarOsCliente">OS cliente</a> <!--FAZER-->
+            <a href="relatorioOsCliente.jsp">OS cliente</a> <!--FAZER-->
             <a href="buscarOsAparelho">OS aparelho</a> <!--FAZER-->
         </div>
     </div>

@@ -204,7 +204,30 @@ public class OsDaoClasse implements OsDaoInterface{
 
     @Override
     public Set<OrdemServico> buscarAparelho(Aparelho a) throws ErroDao {
-        return null;
+        try {
+            Set<OrdemServico> ordemServicos=new HashSet();
+            PreparedStatement stm=con.prepareStatement
+                    ("select * from ordem_servico WHERE id_aparelho = ?");
+            stm.setInt(1,a.getId());
+            ResultSet rs= stm.executeQuery();
+            ClienteDaoInterface clienteDao = new ClienteDaoClasse();
+            AparelhoDaoInterface aparelhoDao = new AparelhoDaoClasse();
+            while (rs.next()){
+                OrdemServico os=new OrdemServico();
+                os.setId(rs.getInt("id"));
+                os.setCliente(clienteDao.buscar(rs.getInt("id_cliente")));
+                os.setAparelho(aparelhoDao.buscar(rs.getInt("id_aparelho")));
+                os.setObservacao(rs.getString("obs"));
+                os.setDataEntrada(rs.getTimestamp("data_entrada"));
+
+                ordemServicos.add(os);
+            }
+            clienteDao.sair();
+            aparelhoDao.sair();
+            return ordemServicos;
+        } catch (SQLException e) {
+            throw new ErroDao(e);
+        }
     }
 
     @Override

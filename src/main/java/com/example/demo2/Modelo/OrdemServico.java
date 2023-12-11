@@ -119,4 +119,18 @@ public class OrdemServico {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "OrdemServico{" +
+                "id=" + id +
+                ", cliente=" + cliente +
+                ", aparelho=" + aparelho +
+                ", observacao='" + observacao + '\'' +
+                ", servicos=" + servicos +
+                ", dataEntrada=" + dataEntrada +
+                ", dataSaida=" + dataSaida +
+                ", valorTotal=" + valorTotal +
+                '}';
+    }
 }
