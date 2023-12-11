@@ -24,7 +24,7 @@
             <a href="buscarOs">OS abertas</a>
             <a href="buscarOsFinalizadas">OS finalizadas</a>
             <a href="relatorioOsCliente.jsp">OS cliente</a> <!--FAZER-->
-            <a href="buscarOsAparelho">OS aparelho</a> <!--FAZER-->
+            <a href="relatorioOsAparelho.jsp">OS aparelho</a> <!--FAZER-->
         </div>
     </div>
 

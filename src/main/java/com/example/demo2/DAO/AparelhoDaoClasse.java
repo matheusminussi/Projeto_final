@@ -142,6 +142,30 @@ public class AparelhoDaoClasse implements AparelhoDaoInterface{
         }    }
 
     @Override
+    public Aparelho buscarNumeroSerie(String numeroSerie) throws ErroDao {
+        try {
+            Set<Aparelho> aparelhos=new HashSet();
+            PreparedStatement stm=con.prepareStatement
+                    ("select * from aparelho where numero_serie = ?");
+            stm.setString(1,numeroSerie);
+            ResultSet rs= stm.executeQuery();
+            Aparelho a=new Aparelho();
+            while (rs.next()){
+
+                a.setId(rs.getInt("id"));
+                a.setNome(rs.getString("nome"));
+                a.setModelo(rs.getString("modelo"));
+                a.setMarca(rs.getString("marca"));
+                a.setNumero_serie(rs.getString("numero_serie"));
+
+            }
+            return a;
+        } catch (SQLException e) {
+            throw new ErroDao(e);
+        }
+    }
+
+    @Override
     public void sair() throws ErroDao {
         try {
             con.close();

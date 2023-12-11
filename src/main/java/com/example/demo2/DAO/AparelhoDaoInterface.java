@@ -12,5 +12,6 @@ public interface AparelhoDaoInterface {
     public Aparelho buscar(int id) throws ErroDao;
     public Aparelho buscar(String nome) throws ErroDao;
     public Set<Aparelho> buscar()throws ErroDao;
+    public Aparelho buscarNumeroSerie(String numeroSerie)throws ErroDao;
     public void sair() throws ErroDao;
 }
