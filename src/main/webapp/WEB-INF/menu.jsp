@@ -17,7 +17,16 @@
         </div>
     </div>
     <a href="buscarFormOs" class="menu-item">Ordem de serviço</a>
-    <a href="buscarOs" class="menu-item">Relatorio OS</a>
+
+    <div class="menu-item">
+        Relatorios OS
+        <div class="submenu">
+            <a href="buscarOs">OS abertas</a>
+            <a href="buscarOsFinalizadas">OS finalizadas</a>
+            <a href="buscarOsCliente">OS cliente</a> <!--FAZER-->
+            <a href="buscarOsAparelho">OS aparelho</a> <!--FAZER-->
+        </div>
+    </div>
 
     <a href="sair" class="menu-item">Sair</a>
 </div>

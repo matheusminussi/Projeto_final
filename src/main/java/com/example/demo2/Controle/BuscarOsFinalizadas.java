@@ -1,7 +1,8 @@
 package com.example.demo2.Controle;
 
-import com.example.demo2.DAO.*;
-import com.example.demo2.Modelo.Cliente;
+import com.example.demo2.DAO.ErroDao;
+import com.example.demo2.DAO.OsDaoClasse;
+import com.example.demo2.DAO.OsDaoInterface;
 import com.example.demo2.Modelo.OrdemServico;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -13,14 +14,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
-@WebServlet(name = "buscarOs", value = "/buscarOs")
-public class BuscarOs extends HttpServlet {
+@WebServlet(name = "buscarOsFinalizadas", value = "/buscarOsFinalizadas")
+public class BuscarOsFinalizadas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
             try {
                 OsDaoInterface dao=new OsDaoClasse();
-                Set<OrdemServico> ordemServicos=dao.buscarAbertas();
+                Set<OrdemServico> ordemServicos=dao.buscarFinalizadas();
                 dao.sair();
 
                 if(ordemServicos!=null)

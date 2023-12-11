@@ -2,6 +2,7 @@ package com.example.demo2.Modelo;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,7 @@ public class OrdemServico {
     String observacao;
     List<Servico> servicos = new ArrayList<>();
     LocalDateTime dataEntrada;
-    Date dataSaida;
+    LocalDateTime dataSaida;
     double valorTotal;
 
     public OrdemServico() {
@@ -25,6 +26,14 @@ public class OrdemServico {
         this.aparelho = aparelho;
         this.observacao = observacao;
         this.dataEntrada = dataEntrada;
+    }
+
+    public OrdemServico(Cliente cliente, Aparelho aparelho, String observacao, LocalDateTime dataEntrada, LocalDateTime dataSaida) {
+        this.cliente = cliente;
+        this.aparelho = aparelho;
+        this.observacao = observacao;
+        this.dataEntrada = dataEntrada;
+        this.dataSaida = dataSaida;
     }
 
     public int getId() {
@@ -67,29 +76,36 @@ public class OrdemServico {
         this.servicos = servicos;
     }
 
-    public LocalDateTime getDataEntrada() {
+    public LocalDateTime getDataEntrada(){
         return dataEntrada;
+    }
+    public String getDataEntradaFormatada(){
+       return dataEntrada.format(DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm"));
+    }
+    public String getDataSaidaFormatada(){
+        return dataSaida.format(DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm"));
     }
 
     public void setDataEntrada(Timestamp dataEntrada) {
         this.dataEntrada = dataEntrada.toLocalDateTime();
     }
 
-    public Date getDataSaida() {
+    public LocalDateTime getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(Date dataSaida) {
-        this.dataSaida = dataSaida;
+    public void setDataSaida(Timestamp dataSaida) {
+        this.dataSaida = dataSaida.toLocalDateTime();
     }
 
     public double getValorTotal() {
-        return valorTotal;
+        double total=0;
+        for(Servico servico: servicos){
+         total+=servico.getValor();
+        }
+        return total;
     }
 
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
-    }
 
     @Override
     public boolean equals(Object o) {

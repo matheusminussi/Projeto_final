@@ -48,7 +48,6 @@ public class CadastrarOs extends HttpServlet {
 
 
                 LocalDateTime dataHoraAtual = LocalDateTime.now();
-                System.out.println(""+dataHoraAtual);
 
                 OrdemServico os = new OrdemServico(cliente,aparelho,obs,dataHoraAtual);
 

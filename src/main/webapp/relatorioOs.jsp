@@ -32,11 +32,25 @@
         <td><c:out value="${os.cliente.nome}" /></td>
         <td><c:out value="${os.aparelho.nome}" /></td>
         <td><c:out value="${os.observacao}" /></td>
-        <td><c:out value="${os.dataEntrada}" /></td>
+        <td><c:out value="${os.dataEntradaFormatada}" /></td>
 
         <td>
-            <!--Fazer a view dos servicos da os-->
 
+            <c:choose>
+                <c:when test="${empty os.dataSaida}">
+                    <form action="finalizaOs" method="post">
+                        <input type="hidden" name="id" value="${os.id}">
+                        <input type="submit" value="Finalizar O.S">
+                    </form>
+                </c:when>
+                <c:otherwise>
+                   ${os.dataSaidaFormatada}
+                </c:otherwise>
+            </c:choose>
+
+        </td>
+        <td>
+                ${os.valorTotal}
         </td>
 
         <td>
