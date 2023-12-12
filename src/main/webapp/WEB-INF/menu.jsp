@@ -12,7 +12,6 @@
             <a href="buscarClientes">Clientes</a>
             <a href="buscarAparelhos">Aparelhos</a>
             <a href="buscarServicos">Serviços</a>
-            <a href="buscar">Funcionarios</a>
 
         </div>
     </div>

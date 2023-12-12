@@ -20,6 +20,8 @@ public interface OsDaoInterface {
     public Set<OrdemServico> buscarFinalizadas()throws ErroDao;
     public Set<OrdemServico> buscarCliente(Cliente c)throws ErroDao;
     public Set<OrdemServico> buscarAparelho(Aparelho a)throws ErroDao;
+    public List<Integer> buscarIdServicos(int idDaOs) throws ErroDao;
+    public List<Servico> buscarServicos(List<Integer> idServicos) throws ErroDao;
     public void finaliar(OrdemServico os, LocalDateTime dataHoraAtual) throws ErroDao;
     public void sair() throws ErroDao;
 }

@@ -9,11 +9,14 @@
 <%@ include file="WEB-INF/menu.jsp" %>
 
 <div class="conteudo">
+    <h1>Cadastro</h1>
     <input type="radio" name="opcao" value="div1" onclick="mostrarDiv('div1')"> Clientes
     <input type="radio" name="opcao" value="div2" onclick="mostrarDiv('div2')"> Aparelhos
     <input type="radio" name="opcao" value="div3" onclick="mostrarDiv('div3')"> Serviços
     <input type="radio" name="opcao" value="div4" onclick="mostrarDiv('div4')"> Funcionarios
-
+<div class="conteudo">
+    <!--espaço-->
+</div>
 
     <div id="div1" class="menu-cadastro" style="display:block;">
             <form action="cadastrarCliente" method="post">

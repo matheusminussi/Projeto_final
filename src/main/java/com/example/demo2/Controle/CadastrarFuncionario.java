@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -24,6 +25,10 @@ public class CadastrarFuncionario extends HttpServlet {
         String nome=request.getParameter("nome");
         String login=request.getParameter("login");
         String senha=request.getParameter("senha");
+
+        HttpSession sessao=request.getSession();
+        Funcionario funcionarioLogado=(Funcionario) sessao.getAttribute("funcionario");
+        if(funcionarioLogado!=null) {
         //se os dados existirem
         if(Validador.temValor(nome)&&Validador.temValor(login)&&Validador.temValor(senha)) {
 
@@ -45,6 +50,8 @@ public class CadastrarFuncionario extends HttpServlet {
             //envia para o index com a mensagem de erro
             response.sendRedirect("home.jsp?mensagem=faltadados");
         }
+        }else
+            response.sendRedirect("login.jsp?mensagem=naoestavalogado");
     }
 }
  

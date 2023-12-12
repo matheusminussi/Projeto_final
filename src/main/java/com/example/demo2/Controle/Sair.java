@@ -15,7 +15,7 @@ public class Sair extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession sessao=request.getSession();
-        Funcionario funcionarioLogado=(Funcionario) sessao.getAttribute("usuario");
+        Funcionario funcionarioLogado=(Funcionario) sessao.getAttribute("funcionario");
         if(funcionarioLogado!=null)
         {
             sessao.removeAttribute("funcionario");

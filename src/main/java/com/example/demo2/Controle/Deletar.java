@@ -1,6 +1,7 @@
 package com.example.demo2.Controle;
 
 import com.example.demo2.DAO.*;
+import com.example.demo2.Modelo.Funcionario;
 import com.example.demo2.Modelo.Servico;
 import com.example.demo2.Utils.Validador;
 import jakarta.servlet.ServletException;
@@ -20,6 +21,9 @@ public class Deletar extends HttpServlet {
         //pegar os dados
         String tid = request.getParameter("id");
         String tipo = request.getParameter("tipo");
+        HttpSession sessao=request.getSession();
+        Funcionario funcionarioLogado=(Funcionario) sessao.getAttribute("funcionario");
+        if(funcionarioLogado!=null) {
 
         //se os dados existirem
         if (Validador.temValor(tid) && Validador.temValor(tipo)) {
@@ -80,6 +84,9 @@ public class Deletar extends HttpServlet {
                 response.sendRedirect("home.jsp?mensagem=faltadados");
             }
         }
+
+        }else
+            response.sendRedirect("login.jsp?mensagem=naoestavalogado");
     }
 }
  

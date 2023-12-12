@@ -1,9 +1,7 @@
 package com.example.demo2.Controle;
 
 import com.example.demo2.DAO.*;
-import com.example.demo2.Modelo.Aparelho;
-import com.example.demo2.Modelo.Cliente;
-import com.example.demo2.Modelo.Servico;
+import com.example.demo2.Modelo.*;
 import com.example.demo2.Utils.Validador;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -11,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -24,64 +23,83 @@ public class Buscar extends HttpServlet {
         String nome=request.getParameter("nome");
         String tipo=request.getParameter("tipo");
 
-        //se os dados existirem
-        if(Validador.temValor(tid)&&Validador.temValor(tipo)&&Validador.temValor(nome)) {
-            int id=Integer.parseInt(tid);
+        HttpSession sessao=request.getSession();
+        Funcionario funcionarioLogado=(Funcionario) sessao.getAttribute("funcionario");
+        if(funcionarioLogado!=null) {
 
-            if(tipo.equals("cliente")){
+            //se os dados existirem
+            if (Validador.temValor(tid) && Validador.temValor(tipo)) {
+                int id = Integer.parseInt(tid);
 
-                try {
-                    ClienteDaoInterface dao=new ClienteDaoClasse();
-                    Cliente cliente = dao.buscar(id);
-                    dao.sair();
-                    request.setAttribute("cliente",cliente);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/editar.jsp");
-                    // Encaminha a requisição para a JSP "editar.jsp"
-                    dispatcher.forward(request, response);
-                }catch (ErroDao e) {
+                if (tipo.equals("cliente")) {
+
+                    try {
+                        ClienteDaoInterface dao = new ClienteDaoClasse();
+                        Cliente cliente = dao.buscar(id);
+                        dao.sair();
+                        request.setAttribute("cliente", cliente);
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/editar.jsp");
+                        // Encaminha a requisição para a JSP "editar.jsp"
+                        dispatcher.forward(request, response);
+                    } catch (ErroDao e) {
                         response.sendRedirect("buscarClientes?mensagem=erroaotentareditar");
                     }
-                }else if(tipo.equals("aparelho")){
+                } else if (tipo.equals("aparelho")) {
 
                     try {
-                        AparelhoDaoInterface dao=new AparelhoDaoClasse();
+                        AparelhoDaoInterface dao = new AparelhoDaoClasse();
                         Aparelho aparelho = dao.buscar(id);
                         dao.sair();
-                        request.setAttribute("aparelho",aparelho);
+                        request.setAttribute("aparelho", aparelho);
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/editar.jsp");
                         // Encaminha a requisição para a JSP "editar.jsp"
                         dispatcher.forward(request, response);
-                    }catch (ErroDao e) {
+                    } catch (ErroDao e) {
                         response.sendRedirect("buscarAparelhos?mensagem=erroaotentarremover");
                     }
-                }else if(tipo.equals("servico")){
+                } else if (tipo.equals("servico")) {
 
                     try {
-                        ServicoDaoInterface dao=new ServicoDaoClasse();
+                        ServicoDaoInterface dao = new ServicoDaoClasse();
                         Servico servico = dao.buscar(id);
                         dao.sair();
-                        request.setAttribute("servico",servico);
+                        request.setAttribute("servico", servico);
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/editar.jsp");
                         // Encaminha a requisição para a JSP "editar.jsp"
                         dispatcher.forward(request, response);
-                    }catch (ErroDao e) {
+                    } catch (ErroDao e) {
                         response.sendRedirect("buscarServicos?mensagem=erroaotentarremover");
                     }
-                }else if(tipo.equals("funcionario")){
+                } else if (tipo.equals("funcionario")) {
 
                     try {
-                        FuncionarioDaoInterface dao=new FuncionarioDaoClasse();
+                        FuncionarioDaoInterface dao = new FuncionarioDaoClasse();
                         dao.deletar(id);
                         dao.sair();
                         response.sendRedirect("buscar?mensagem=removidocomsucesso");
-                    }catch (ErroDao e) {
+                    } catch (ErroDao e) {
                         response.sendRedirect("buscar?mensagem=erroaotentarremover");
+                    }
+                }if (tipo.equals("os")) {
+
+                    try {
+                        OsDaoInterface dao = new OsDaoClasse();
+                        OrdemServico os = dao.buscar(id);
+                        dao.sair();
+                        request.setAttribute("os", os);
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/editar.jsp");
+                        // Encaminha a requisição para a JSP "editar.jsp"
+                        dispatcher.forward(request, response);
+                    } catch (ErroDao e) {
+                        response.sendRedirect("buscarClientes?mensagem=erroaotentareditar");
                     }
                 }
 
-        }else{
-            response.sendRedirect("home.jsp?mensagem=faltadados");
-        }
+            } else {
+                response.sendRedirect("home.jsp?mensagem=faltadados");
+            }
+        }else
+            response.sendRedirect("login.jsp?mensagem=naoestavalogado");
     }
 }
  

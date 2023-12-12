@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -19,6 +20,10 @@ public class Relatorio extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login=request.getParameter("login");
         String senha=request.getParameter("senha");
+
+        HttpSession sessao=request.getSession();
+        Funcionario funcionarioLogado=(Funcionario) sessao.getAttribute("funcionario");
+        if(funcionarioLogado!=null) {
 
         if(Validador.temValor(login)&&Validador.temValor(senha)){
             try {
@@ -40,7 +45,8 @@ public class Relatorio extends HttpServlet {
             }
         }
 
-
+        }else
+            response.sendRedirect("login.jsp?mensagem=naoestavalogado");
     }
 }
  

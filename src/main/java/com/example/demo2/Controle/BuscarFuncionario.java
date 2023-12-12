@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.Set;
@@ -18,6 +19,10 @@ import java.util.Set;
 public class BuscarFuncionario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession sessao=request.getSession();
+        Funcionario funcionarioLogado=(Funcionario) sessao.getAttribute("funcionario");
+        if(funcionarioLogado!=null) {
 
             try {
 
@@ -40,7 +45,10 @@ public class BuscarFuncionario extends HttpServlet {
             } catch (ErroDao e) {
                 response.sendRedirect("index.jsp?mensagem=erroaologar");
             }
-        }
+
+        }else
+            response.sendRedirect("login.jsp?mensagem=naoestavalogado");
+    }
 
 
 

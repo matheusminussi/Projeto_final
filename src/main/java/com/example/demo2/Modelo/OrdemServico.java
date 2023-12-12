@@ -36,6 +36,13 @@ public class OrdemServico {
         this.dataSaida = dataSaida;
     }
 
+    public OrdemServico(int id,Cliente cliente, Aparelho aparelho, String observacao) {
+        this.id = id;
+        this.cliente = cliente;
+        this.aparelho = aparelho;
+        this.observacao = observacao;
+    }
+
     public int getId() {
         return id;
     }

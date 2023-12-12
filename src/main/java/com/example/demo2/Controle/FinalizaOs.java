@@ -1,6 +1,7 @@
 package com.example.demo2.Controle;
 
 import com.example.demo2.DAO.*;
+import com.example.demo2.Modelo.Funcionario;
 import com.example.demo2.Modelo.OrdemServico;
 import com.example.demo2.Utils.Validador;
 import jakarta.servlet.RequestDispatcher;
@@ -9,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -20,6 +22,10 @@ public class FinalizaOs extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         //pegar os dados
         String tid=request.getParameter("id");
+
+        HttpSession sessao=request.getSession();
+        Funcionario funcionarioLogado=(Funcionario) sessao.getAttribute("funcionario");
+        if(funcionarioLogado!=null) {
 
         //se os dados existirem
         if(Validador.temValor(tid)) {
@@ -39,6 +45,8 @@ public class FinalizaOs extends HttpServlet {
         }else{
             response.sendRedirect("home.jsp?mensagem=faltadados");
         }
+        }else
+            response.sendRedirect("login.jsp?mensagem=naoestavalogado");
     }
 }
  

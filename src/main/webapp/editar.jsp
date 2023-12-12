@@ -54,6 +54,20 @@
             <input type="submit" value="Editar">
         </form>
     </c:if>
+
+    <c:if test="${not empty requestScope.os}">
+        <form action="editar" method="post">
+            <input type="hidden" name="id" value="${requestScope.os.id}">
+            <label>Nome do cliente:
+                <input type="text" name="nomeCliente" value="${requestScope.os.cliente.nome}"></label>
+            <label>Aparelho:
+                <input type="text" name="nomeAparelho" value="${requestScope.os.aparelho.nome}"></label>
+            <label>Observacao:
+                <input type="text" name="obs" value="${requestScope.os.observacao}"></label>
+            <input type="hidden" name="tipo" value="os">
+            <input type="submit" value="Editar">
+        </form>
+    </c:if>
 </div>
 
 </body>

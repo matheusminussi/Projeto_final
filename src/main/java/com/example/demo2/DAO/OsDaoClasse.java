@@ -10,10 +10,8 @@ import jakarta.ejb.Local;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class OsDaoClasse implements OsDaoInterface{
     private Connection con;
@@ -91,7 +89,18 @@ public class OsDaoClasse implements OsDaoInterface{
 
     @Override
     public void editar(OrdemServico os) throws ErroDao {
-
+        try {
+            PreparedStatement stm=con.prepareStatement
+                    ("update ordem_servico set id_cliente=?, id_aparelho=?, obs=? where id=?");
+            stm.setInt(1,os.getCliente().getId());
+            stm.setInt(2,os.getAparelho().getId());
+            stm.setString(3,os.getObservacao());
+            stm.setInt(4,os.getId());
+            stm.executeUpdate();
+            stm.close();
+        } catch (SQLException e) {
+            throw new ErroDao(e);
+        }
     }
 
     @Override
@@ -229,6 +238,51 @@ public class OsDaoClasse implements OsDaoInterface{
             throw new ErroDao(e);
         }
     }
+
+    @Override
+    public List<Integer> buscarIdServicos(int idDaOs) throws ErroDao {
+        try {
+            PreparedStatement stm = con.prepareStatement
+                    ("select id_servico from ordem_servico_servico where id_ordem_servico = ?");
+            stm.setInt(1, idDaOs);
+            ResultSet rs = stm.executeQuery();
+            List<Integer> idServicos = new ArrayList<>();
+            while (rs.next()){
+
+                idServicos.add(rs.getInt("id_servico"));
+            }
+            return idServicos;
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Servico> buscarServicos(List<Integer> idServicos) throws ErroDao {
+        try {
+            PreparedStatement stm = con.prepareStatement
+                    ("select * from servico where id = ?");
+            for(int id:idServicos){
+                stm.setInt(1, id);
+            }
+            ResultSet rs = stm.executeQuery();
+            List<Servico> servicosDaOs = new ArrayList<>();
+
+            while (rs.next()){
+                Servico servico = new Servico();
+                servico.setId(rs.getInt("id"));
+                servico.setNome(rs.getString("nome"));
+                servico.setDescricao(rs.getString("descricao"));
+                servico.setValor(rs.getDouble("valor"));
+
+                servicosDaOs.add(servico);
+            }
+            return servicosDaOs;
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Override
     public void finaliar(OrdemServico os, LocalDateTime dataHoraAtual) throws ErroDao {

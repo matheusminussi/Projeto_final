@@ -3,6 +3,7 @@ package com.example.demo2.Controle;
 import com.example.demo2.DAO.*;
 import com.example.demo2.Modelo.Aparelho;
 import com.example.demo2.Modelo.Cliente;
+import com.example.demo2.Modelo.Funcionario;
 import com.example.demo2.Utils.Validador;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -10,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -24,6 +26,11 @@ public class CadastrarAparelho extends HttpServlet {
         String modelo=request.getParameter("modelo");
         String marca=request.getParameter("marca");
         String numeroSerie=request.getParameter("serialN");
+
+        HttpSession sessao=request.getSession();
+        Funcionario funcionarioLogado=(Funcionario) sessao.getAttribute("funcionario");
+        if(funcionarioLogado!=null) {
+
         //se os dados existirem
         if(Validador.temValor(nome)&&Validador.temValor(modelo)&&Validador.temValor(marca)&&Validador.temValor(numeroSerie)) {
 
@@ -45,6 +52,9 @@ public class CadastrarAparelho extends HttpServlet {
             //envia para o index com a mensagem de erro
             response.sendRedirect("home.jsp?mensagem=faltadados");
         }
+
+        }else
+            response.sendRedirect("login.jsp?mensagem=naoestavalogado");
     }
 }
  

@@ -14,6 +14,7 @@
 <body>
 <%@ include file="WEB-INF/menu.jsp" %>
    <div class="conteudo">
+       <h1>Buscar por ordem de serviço do cliente</h1>
     <form action="buscarOsCliente" method="post">
         <label>Nome do cliente:
         <input type="text" name="nomeCliente"></label>
@@ -72,7 +73,11 @@
                            </form>
                        </td>
                        <td>
-
+                           <form action="buscar" method="post">
+                               <input type="hidden" name="id" value="${os.id}">
+                               <input type="hidden" name="tipo" value="os">
+                               <input type="submit" value="Editar">
+                           </form>
                        </td>
 
                    </tr>

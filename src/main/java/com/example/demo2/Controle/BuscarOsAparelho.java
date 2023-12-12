@@ -1,6 +1,7 @@
 package com.example.demo2.Controle;
 
 import com.example.demo2.DAO.*;
+import com.example.demo2.Modelo.Funcionario;
 import com.example.demo2.Modelo.OrdemServico;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.Set;
@@ -18,6 +20,12 @@ public class BuscarOsAparelho extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String numeroSerie = request.getParameter("numeroSerie");
+
+        HttpSession sessao=request.getSession();
+        Funcionario funcionarioLogado=(Funcionario) sessao.getAttribute("funcionario");
+        if(funcionarioLogado!=null) {
+
+
             try {
                 AparelhoDaoInterface daoAparelho=new AparelhoDaoClasse();
                 OsDaoInterface daoOs = new OsDaoClasse();
@@ -41,7 +49,8 @@ public class BuscarOsAparelho extends HttpServlet {
                 response.sendRedirect("home.jsp?mensagem=erroBuscarClientes");
             }
 
-
+        }else
+            response.sendRedirect("login.jsp?mensagem=naoestavalogado");
 
     }
 }

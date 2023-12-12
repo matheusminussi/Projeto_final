@@ -8,7 +8,8 @@
 <body>
 <%@ include file="WEB-INF/menu.jsp" %>
 <div class="conteudo">
-<table>
+    <h1>Clientes</h1>
+<table class="tabela">
     <thead>
         <tr>
             <th>Id</th>

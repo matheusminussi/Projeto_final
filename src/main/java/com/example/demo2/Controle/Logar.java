@@ -38,16 +38,16 @@ public class Logar extends HttpServlet {
                     response.sendRedirect("home.jsp?mensagem=logadocomsucesso");
                 }
                 else {
-                    response.sendRedirect("index.jsp?mensagem=loginousenhaincorretos");
+                    response.sendRedirect("login.jsp?mensagem=loginousenhaincorretos");
 
                 }
             } catch (ErroDao e) {
-                response.sendRedirect("index.jsp?mensagem=erroaologar");
+                response.sendRedirect("login.jsp?mensagem=erroaologar");
             }
         }
         else //senão
         {
-            response.sendRedirect("index.jsp?mensagem=faltadados");
+            response.sendRedirect("login.jsp?mensagem=faltadados");
         }
     }
 }

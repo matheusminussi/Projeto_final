@@ -6,10 +6,13 @@
 <html>
 <head>
     <title>Clientes</title>
+    <link rel="stylesheet" href="estilo.css" >
+
 </head>
 <body>
 <%@ include file="WEB-INF/menu.jsp" %>
 <div class="conteudo">
+    <h1>Relatorio das ordens de serviço</h1>
 <table>
     <thead>
         <tr>
@@ -50,7 +53,10 @@
 
         </td>
         <td>
-                ${os.valorTotal}
+            <form action="buscarServicoDaOs" method="post">
+                <input type="hidden" name="id" value="${os.id}">
+                <input type="submit" value="Mostrar Servicos">
+            </form>
         </td>
 
         <td>
@@ -61,7 +67,11 @@
             </form>
         </td>
         <td>
-
+            <form action="buscar" method="post">
+                <input type="hidden" name="id" value="${os.id}">
+                <input type="hidden" name="tipo" value="os">
+                <input type="submit" value="Editar">
+            </form>
         </td>
 
     </tr>

@@ -13,7 +13,7 @@
         <label>Usuario
             <input class="inputLogin" type="text" placeholder="Usuario" name="login"></label>
         <label>Senha
-            <input class="inputLogin" type="text" placeholder="Senha" name="senha"></label>
+            <input class="inputLogin" type="password" placeholder="Senha" name="senha"></label>
         <input id="btLogar" type="submit" value="Logar">
     </form>
 </div>
